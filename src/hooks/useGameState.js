@@ -28,37 +28,40 @@ export const useGameState = () => {
       }
       return newScore;
     });
-
+    
     setGameCount(prev => prev + 1);
     animations.animateScoreUpdate();
-
+    accessibility.playSound('click');
+    
     const newScore = { ...score };
     if (result === 'draw') {
       newScore.draws += 1;
     } else {
       newScore[result] += 1;
     }
-
+    
     if (newScore.X >= 11 || newScore.O >= 11) {
       const winner = newScore.X >= 11 ? 'X' : 'O';
       setMatchWinner(winner);
       accessibility.announceToScreenReader(`${winner} venceu a partida!`);
+      accessibility.playSound('win');
     }
   }, [score, animations, accessibility]);
 
   const makeMove = useCallback((index) => {
     if (board[index] || gameOver) return;
-
+    
     const newBoard = [...board];
     newBoard[index] = isXNext ? 'X' : 'O';
     setBoard(newBoard);
-
+    
     animations.animateSquareAppear();
+    accessibility.playSound('click');
     accessibility.announceToScreenReader(`Jogador ${isXNext ? 'X' : 'O'} jogou na posição ${index + 1}`);
-
+    
     const winner = checkWinner(newBoard);
     const isDraw = checkDraw(newBoard);
-
+    
     if (winner) {
       setWinner(winner);
       setGameOver(true);
@@ -66,12 +69,14 @@ export const useGameState = () => {
       updateScore(winner);
       animations.animateWinnerHighlight();
       accessibility.announceToScreenReader(`${winner} venceu esta partida!`);
+      accessibility.playSound('win');
     } else if (isDraw) {
       setIsDraw(true);
       setGameOver(true);
       timer.pauseTimer();
       updateScore('draw');
       accessibility.announceToScreenReader('Empate!');
+      accessibility.playSound('draw');
     } else {
       setIsXNext(!isXNext);
       timer.startTimer();
@@ -81,7 +86,7 @@ export const useGameState = () => {
 
   const makeAutoMove = useCallback(() => {
     if (gameOver || !timer.isActive) return;
-
+    
     const randomIndex = makeRandomMove(board);
     if (randomIndex !== null) {
       makeMove(randomIndex);
@@ -96,6 +101,7 @@ export const useGameState = () => {
     setIsDraw(false);
     timer.resetTimer();
     accessibility.announceToScreenReader('Novo jogo iniciado');
+    accessibility.playSound('click');
   }, [timer, accessibility]);
 
   const resetScore = useCallback(() => {
@@ -103,6 +109,7 @@ export const useGameState = () => {
     setGameCount(0);
     setMatchWinner(null);
     accessibility.announceToScreenReader('Placar resetado');
+    accessibility.playSound('click');
   }, [accessibility]);
 
   const resetMatch = useCallback(() => {
@@ -121,6 +128,12 @@ export const useGameState = () => {
       timer.startTimer();
     }
   }, [board, gameOver, timer]);
+
+  useEffect(() => {
+    if (timer.timeLeft <= 2 && timer.timeLeft > 0 && timer.isActive) {
+      accessibility.playSound('timer');
+    }
+  }, [timer.timeLeft, timer.isActive, accessibility]);
 
   return {
     board,

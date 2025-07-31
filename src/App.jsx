@@ -90,10 +90,12 @@ function App() {
         updateColor={(colorType, value) => {
           updateColor(colorType, value);
           animations.animateThemeTransition();
+          accessibility.playSound('theme');
         }}
         applyPreset={(presetName) => {
           applyPreset(presetName);
           animations.animateThemeTransition();
+          accessibility.playSound('theme');
         }}
       />
     </div>
