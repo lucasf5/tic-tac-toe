@@ -1,6 +1,6 @@
 .accessibility-controls {
     position: fixed;
-    top: 20px;
+    bottom: 20px;
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    max-width: 150px;
 }
 
 .accessibility-controls:hover {
@@ -69,9 +70,10 @@
 
 @media (max-width: 768px) {
     .accessibility-controls {
-        top: 10px;
+        bottom: 10px;
         right: 10px;
         padding: 8px;
+        max-width: 130px;
     }
 
     .accessibility-btn {
@@ -89,5 +91,7 @@
         position: static;
         margin: 10px auto;
         max-width: 300px;
+        bottom: auto;
+        right: auto;
     }
 }
