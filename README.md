@@ -40,7 +40,9 @@ src/
 ## 🎯 Decisões Técnicas
 
 ### Hooks Personalizados
+
 Criei hooks especializados para separar responsabilidades:
+
 - `useGameState` - Lógica central do jogo
 - `useGameTimer` - Temporizador com pausa/retomada
 - `useGameTheme` - Gerenciamento de tema
@@ -48,19 +50,24 @@ Criei hooks especializados para separar responsabilidades:
 - `useGameAccessibility` - Recursos de acessibilidade
 
 ### Componentização
+
 Componentes pequenos e focados:
+
 - `GameTimer` - Temporizador com progress bar
 - `AccessibilityControls` - Controles de acessibilidade
 - `GameLayout` - Layout responsivo
 - Cada componente tem uma responsabilidade específica
 
 ### Separação de Responsabilidades
+
 - **Utils** - Lógica pura (gameLogic, themePresets)
 - **Hooks** - Estado e efeitos colaterais
 - **Componentes** - Renderização e interação
 
 ### Acessibilidade
+
 Integrada desde o início, não como add-on:
+
 - Anúncios automáticos para screen reader
 - Navegação completa por teclado
 - Suporte a alto contraste
@@ -69,23 +76,28 @@ Integrada desde o início, não como add-on:
 ## 🚀 Como Executar
 
 ### Pré-requisitos
+
 - Node.js 16+
 - npm ou yarn
 
 ### Instalação
+
 ```bash
-git clone <url-do-repositorio>
+git clone git@github.com:lucasf5/tic-tac-toe.git
 cd Tic-Tac-Toe
 npm install
 ```
 
 ### Desenvolvimento
+
 ```bash
 npm run dev
 ```
+
 Acesse `http://localhost:5173`
 
 ### Produção
+
 ```bash
 npm run build
 npm run preview
@@ -102,24 +114,28 @@ npm run preview
 ## 🎨 Funcionalidades
 
 ### Jogo
+
 - Tabuleiro 3x3 interativo
 - Temporizador com progress bar
 - Detecção automática de vitória/empate
 - Jogada automática quando o tempo acaba
 
 ### Sistema de Partidas
+
 - Placar acumulado (X, O, Empates)
 - Contador de partidas
 - Vitória na partida ao atingir 11 vitórias
 - Botões para resetar e nova partida
 
 ### Personalização
+
 - Menu flutuante de cores
 - Cores para X, O, fundo, tabuleiro, texto
 - 4 presets de tema
 - Aplicação em tempo real
 
 ### Acessibilidade
+
 - Navegação por teclado
 - Anúncios para screen reader
 - Alto contraste automático
@@ -127,6 +143,7 @@ npm run preview
 - Controles de acessibilidade
 
 ### Responsividade
+
 - Desktop, tablet, mobile
 - Breakpoints: 1024px, 768px, 480px
 - Interface otimizada para touch
@@ -159,32 +176,38 @@ npm run lint     # Linter
 ## 🎯 Critérios Atendidos
 
 ### ✅ Escalabilidade e Manutenibilidade
+
 - Arquitetura modular com hooks e componentes reutilizáveis
 - Separação clara entre lógica, estado e apresentação
 - Código limpo com nomes descritivos
 
 ### ✅ Composição Estratégica
+
 - Hooks especializados para diferentes responsabilidades
 - Componentes pequenos e focados
 - Reutilização de código
 
 ### ✅ Boas Práticas React
+
 - useCallback, useEffect, useState otimizados
 - Cleanup adequado de timers e listeners
 - Performance com memoização
 
 ### ✅ Clareza Técnica
+
 - README com justificativas das escolhas
 - Estrutura documentada
 - Código autoexplicativo
 
 ### ✅ Capricho Visual
+
 - Interface moderna e profissional
 - Animações suaves e contextuais
 - Responsividade completa
 - Acessibilidade visual
 
 ### ✅ Comunicação Escrita
+
 - README completo e bem estruturado
 - Instruções claras de uso
 - Documentação das decisões técnicas
